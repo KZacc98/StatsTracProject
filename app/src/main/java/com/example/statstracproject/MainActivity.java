@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.setContacts(contacts);
 
         contactsRecyclerView.setAdapter(adapter);
-        contactsRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        contactsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 }
