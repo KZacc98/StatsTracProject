@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class ContactsRecyclerViewAdapter extends RecyclerView.Adapter<ContactsRecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<Contact> contacts=new ArrayList<>();
+    private ArrayList<Contact> contactsList=new ArrayList<>();
     private Context context;
 
     public ContactsRecyclerViewAdapter(Context context) {
@@ -37,29 +37,29 @@ public class ContactsRecyclerViewAdapter extends RecyclerView.Adapter<ContactsRe
     //tu wrzucasz rzeczy które mają być w kartach recyclerview
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.txtName.setText(contacts.get(position).getName());
-        holder.txtEmail.setText(contacts.get(position).getEmail());
+        holder.txtName.setText(contactsList.get(position).getName());
+        holder.txtEmail.setText(contactsList.get(position).getEmail());
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, contacts.get(holder.getAdapterPosition()).getName() + " Selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, contactsList.get(holder.getAdapterPosition()).getName() + " Selected", Toast.LENGTH_SHORT).show();
             }
         });
 
         Glide.with(context)
                 .asBitmap()
-                .load(contacts.get(position)
+                .load(contactsList.get(position)
                         .getImageUrl())
                 .into(holder.image);
     }
 
     @Override
     public int getItemCount() {
-        return contacts.size();
+        return contactsList.size();
     }
 
-    public void setContacts(ArrayList<Contact> contacts) {
-        this.contacts = contacts;
+    public void setContacts(ArrayList<Contact> contactsList) {
+        this.contactsList = contactsList;
         notifyDataSetChanged();
     }
 
