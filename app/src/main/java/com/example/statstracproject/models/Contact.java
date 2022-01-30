@@ -1,4 +1,4 @@
-package com.example.statstracproject;
+package com.example.statstracproject.models;
 
 public class Contact {
     private Long id;

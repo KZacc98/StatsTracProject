@@ -1,19 +1,19 @@
-package com.example.statstracproject;
+package com.example.statstracproject.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.statstracproject.models.Contact;
+import com.example.statstracproject.api.ContactsApi;
+import com.example.statstracproject.adapters.ContactsRecyclerViewAdapter;
+import com.example.statstracproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ArrayList;
 
 import retrofit2.Call;
