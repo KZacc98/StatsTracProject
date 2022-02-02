@@ -25,8 +25,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
 
-    private FloatingActionButton fab;
-    private RecyclerView contactsRecyclerView;
     private ArrayList<Contact> contactsList = new ArrayList<>();
 
 
@@ -35,22 +33,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Fab pressed", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        FloatingActionButton fab = findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(MainActivity.this, "Fab pressed", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
-        contactsRecyclerView = findViewById(R.id.recyclerView);
+        RecyclerView contactsRecyclerView = findViewById(R.id.recyclerView);
 
         ContactsRecyclerViewAdapter adapter = new ContactsRecyclerViewAdapter(this);
 
 
         contactsRecyclerView.setAdapter(adapter);
         contactsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        retrofitInstance(adapter);
 
+
+
+
+
+
+    }
+
+    private void retrofitInstance(ContactsRecyclerViewAdapter adapter){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8080/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -77,10 +84,5 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Retrofit Failiure: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
-
-
-
-
     }
 }
