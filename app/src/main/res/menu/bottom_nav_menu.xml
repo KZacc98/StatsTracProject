@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bottomNavBar_contacts"
+        android:icon="@drawable/ic_contacts"
+        android:title="Contacts"
+        app:cnb_backgroundColor="#EF233C"
+        app:cnb_iconColor="#F7F7FF" />
+    <item
+        android:id="@+id/bottomNavBar_home"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
+        app:cnb_backgroundColor="#EF233C"
+        app:cnb_iconColor="#F7F7FF" />
+    <item
+        android:id="@+id/bottomNavBar_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="Settings"
+        app:cnb_backgroundColor="#EF233C"
+        app:cnb_iconColor="#F7F7FF" />
+</menu>
