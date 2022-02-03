@@ -114,8 +114,6 @@ public class ContactsFragment extends Fragment {
                 }
                 contactsList = response.body();//tu wpadają rzeczy z serwera
                 adapter.setContacts(contactsList);
-                //String tstmsg=contactsList.toString();
-                //Toast.makeText(MainActivity.this, tstmsg, Toast.LENGTH_LONG).show();
             }
 
             @Override
