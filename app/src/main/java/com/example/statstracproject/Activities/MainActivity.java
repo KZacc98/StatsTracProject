@@ -1,6 +1,7 @@
 package com.example.statstracproject.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,11 +9,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.statstracproject.Fragments.ContactsFragment;
+import com.example.statstracproject.Fragments.HomeFragment;
+import com.example.statstracproject.Fragments.SettingsFragment;
 import com.example.statstracproject.models.Contact;
 import com.example.statstracproject.api.ContactsApi;
 import com.example.statstracproject.adapters.ContactsRecyclerViewAdapter;
 import com.example.statstracproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.ArrayList;
 
@@ -24,6 +29,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
+    ChipNavigationBar chipNavigationBar;
+
 
     private ArrayList<Contact> contactsList = new ArrayList<>();
 
@@ -33,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        chipNavigationBar = findViewById(R.id.bottomNavBar);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new HomeFragment()).commit();
+        bottomMenu();
+
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -41,23 +52,19 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        RecyclerView contactsRecyclerView = findViewById(R.id.recyclerView);
-
-        ContactsRecyclerViewAdapter adapter = new ContactsRecyclerViewAdapter(this);
-
-
-        contactsRecyclerView.setAdapter(adapter);
-        contactsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        retrofitInstance(adapter);
-
-
-
-
+//        RecyclerView contactsRecyclerView = findViewById(R.id.recyclerView);
+//
+//        ContactsRecyclerViewAdapter adapter = new ContactsRecyclerViewAdapter(this);
+//
+//
+//        contactsRecyclerView.setAdapter(adapter);
+//        contactsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        retrofitInstance(adapter);
 
 
     }
 
-    private void retrofitInstance(ContactsRecyclerViewAdapter adapter){
+    private void retrofitInstance(ContactsRecyclerViewAdapter adapter) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8080/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -84,5 +91,27 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Retrofit Failiure: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void bottomMenu() {
+        chipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int i) {
+                Fragment fragment = null;
+                switch (i) {
+                    case R.id.bottomNavBar_home:
+                        fragment = new HomeFragment();
+                        break;
+                    case R.id.bottomNavBar_contacts:
+                        fragment = new ContactsFragment();
+                        break;
+                    case R.id.bottomNavBar_settings:
+                        fragment = new SettingsFragment();
+                        break;
+                }
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
+            }
+        });
+
     }
 }
