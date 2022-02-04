@@ -12,18 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.statstracproject.R;
-import com.example.statstracproject.models.Contact;
+import com.example.statstracproject.models.Subject;
 
 import java.util.ArrayList;
 
-public class ContactsRecyclerViewAdapter extends RecyclerView.Adapter<ContactsRecyclerViewAdapter.ViewHolder> {
+public class SubjectsRecyclerViewAdapter extends RecyclerView.Adapter<SubjectsRecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<Contact> contactsList=new ArrayList<>();
+    private ArrayList<Subject> subjectsList=new ArrayList<>();
     private Context context;
 
-    public ContactsRecyclerViewAdapter(Context context) {
+    public SubjectsRecyclerViewAdapter(Context context) {
         this.context=context;
     }
 
@@ -38,29 +37,29 @@ public class ContactsRecyclerViewAdapter extends RecyclerView.Adapter<ContactsRe
     //tu wrzucasz rzeczy które mają być w kartach recyclerview
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.txtName.setText(contactsList.get(position).getName());
-        holder.txtEmail.setText(contactsList.get(position).getEmail());
+        holder.txtName.setText(subjectsList.get(position).getTitle());
+        holder.txtEmail.setText(subjectsList.get(position).getTitle());
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, contactsList.get(holder.getAdapterPosition()).getName() + " Selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, subjectsList.get(holder.getAdapterPosition()).getTitle() + " Selected", Toast.LENGTH_SHORT).show();
             }
         });
 
-        Glide.with(context)
-                .asBitmap()
-                .load(contactsList.get(position)
-                        .getImageUrl())
-                .into(holder.image);
+//        Glide.with(context)
+//                .asBitmap()
+//                .load(subjectsList.get(position)
+//                        .getImageUrl())
+//                .into(holder.image);
     }
 
     @Override
     public int getItemCount() {
-        return contactsList.size();
+        return subjectsList.size();
     }
 
-    public void setContacts(ArrayList<Contact> contactsList) {
-        this.contactsList = contactsList;
+    public void setSubjects(ArrayList<Subject> subjectsList) {
+        this.subjectsList = subjectsList;
         notifyDataSetChanged();
     }
 

@@ -11,11 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.statstracproject.Activities.MainActivity;
 import com.example.statstracproject.R;
-import com.example.statstracproject.adapters.ContactsRecyclerViewAdapter;
-import com.example.statstracproject.api.ContactsApi;
-import com.example.statstracproject.models.Contact;
+import com.example.statstracproject.adapters.SubjectsRecyclerViewAdapter;
+import com.example.statstracproject.api.SubjectsApi;
+import com.example.statstracproject.models.Subject;
 
 import java.util.ArrayList;
 
@@ -30,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Use the {link ContactsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ContactsFragment extends Fragment {
+public class SubjectsFragment extends Fragment {
 
 
 //    // TODO: Rename parameter arguments, choose names that match
@@ -74,19 +73,19 @@ public class ContactsFragment extends Fragment {
 //
 //    }
 
-    private ArrayList<Contact> contactsList = new ArrayList<>();
+    private ArrayList<Subject> subjectsList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_contacts, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_subjects, container, false);
         // 1. get a reference to recyclerView
         RecyclerView contactsRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         // 2. set layoutManger
 
 
-        ContactsRecyclerViewAdapter adapter = new ContactsRecyclerViewAdapter(rootView.getContext());
+        SubjectsRecyclerViewAdapter adapter = new SubjectsRecyclerViewAdapter(rootView.getContext());
         contactsRecyclerView.setAdapter(adapter);
         contactsRecyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.HORIZONTAL, false));
         retrofitInstance(adapter, rootView);
@@ -96,33 +95,34 @@ public class ContactsFragment extends Fragment {
     }
 
 
-    private void retrofitInstance(ContactsRecyclerViewAdapter adapter, View rootView) {
+    private void retrofitInstance(SubjectsRecyclerViewAdapter adapter, View rootView) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8080/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        ContactsApi contactsApi = retrofit.create(ContactsApi.class);
+        SubjectsApi subjectsApi= retrofit.create(SubjectsApi.class);
 
-        Call<ArrayList<Contact>> call = contactsApi.getContacts();
-        call.enqueue(new Callback<ArrayList<Contact>>() {
+        Call<ArrayList<Subject>> call = subjectsApi.getSubjects();
+        call.enqueue(new Callback<ArrayList<Subject>>() {
             @Override
-            public void onResponse(Call<ArrayList<Contact>> call, Response<ArrayList<Contact>> response) {
+            public void onResponse(Call<ArrayList<Subject>> call, Response<ArrayList<Subject>> response) {
                 if (!response.isSuccessful()) {
                     Toast.makeText(rootView.getContext(), "Code: " + response.code(), Toast.LENGTH_LONG).show();
                     return;
                 }
-                contactsList = response.body();//tu wpadają rzeczy z serwera
-                adapter.setContacts(contactsList);
+                subjectsList = response.body();//tu wpadają rzeczy z serwera
+                adapter.setSubjects(subjectsList);
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Contact>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Subject>> call, Throwable t) {
                 Toast.makeText(requireContext(), "Retrofit Failiure: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
 }
+
 
 
 

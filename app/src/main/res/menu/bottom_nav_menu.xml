@@ -4,8 +4,8 @@
 
     <item
         android:id="@+id/bottomNavBar_contacts"
-        android:icon="@drawable/ic_contacts"
-        android:title="Contacts"
+        android:icon="@drawable/ic_subjects"
+        android:title="Subjects"
         app:cnb_backgroundColor="#EF233C"
         app:cnb_iconColor="#F7F7FF" />
     <item
