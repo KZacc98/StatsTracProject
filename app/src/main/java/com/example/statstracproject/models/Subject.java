@@ -2,23 +2,24 @@ package com.example.statstracproject.models;
 
 public class Subject {
 
-    private Long id;
+    private Long subjectId;
     private String title;
+
 
     @Override
     public String toString() {
         return "Subject{" +
-                "id=" + id +
+                "id=" + subjectId +
                 ", title='" + title + '\'' +
                 '}';
     }
 
-    public Long getId() {
-        return id;
+    public Long getSubjectId() {
+        return subjectId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSubjectId(Long subjectId) {
+        this.subjectId = subjectId;
     }
 
     public String getTitle() {
@@ -29,8 +30,8 @@ public class Subject {
         this.title = title;
     }
 
-    public Subject(Long id, String title) {
-        this.id = id;
+    public Subject(Long subjectId, String title) {
+        this.subjectId = subjectId;
         this.title = title;
     }
 

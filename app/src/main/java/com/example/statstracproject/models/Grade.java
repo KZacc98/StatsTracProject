@@ -4,49 +4,47 @@ public class Grade {
     private Long gradeId;
     private Double gradeValue;
     private String note;
-    private Subject subject;
-
-    public Grade(Long gradeId, Double gradeValue, String note, Subject subject) {
-        this.gradeId = gradeId;
-        this.gradeValue = gradeValue;
-        this.note = note;
-        this.subject = subject;
-    }
-
-    @Override
-    public String toString() {
-        return "Grade{" +
-                "gradeId=" + gradeId +
-                ", gradeValue=" + gradeValue +
-                ", note='" + note + '\'' +
-                ", subject=" + subject +
-                '}';
-    }
-
-    public void setGradeValue(Double gradeValue) {
-        this.gradeValue = gradeValue;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
+    private Long subjectId;
 
     public Long getGradeId() {
         return gradeId;
+    }
+
+    public void setGradeId(Long gradeId) {
+        this.gradeId = gradeId;
     }
 
     public Double getGradeValue() {
         return gradeValue;
     }
 
+    public void setGradeValue(Double gradeValue) {
+        this.gradeValue = gradeValue;
+    }
+
     public String getNote() {
         return note;
     }
 
-    public Subject getSubject() {
-        return subject;
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Long getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Long subjectId) {
+        this.subjectId = subjectId;
     }
 
     public Grade() {
+    }
+
+    public Grade(Long gradeId, Double gradeValue, String note, Long subjectId) {
+        this.gradeId = gradeId;
+        this.gradeValue = gradeValue;
+        this.note = note;
+        this.subjectId = subjectId;
     }
 }

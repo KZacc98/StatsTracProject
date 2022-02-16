@@ -11,16 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.statstracproject.R;
 import com.example.statstracproject.models.Grade;
+import com.example.statstracproject.models.Subject;
 
 import java.util.ArrayList;
 
 public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder> {
 
     private ArrayList<Grade> grades = new ArrayList<>();
+    private ArrayList<Subject> subjects = new ArrayList<>();
     private Context context;
 
     public GradesAdapter(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
     @NonNull
@@ -34,7 +36,8 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txtGrade.setText(grades.get(position).getGradeValue().toString());
+        holder.txtGrade.setText(grades.get(position).getGradeValue().toString() + " GRADE ID: "
+                + grades.get(position).getGradeId().toString() + " SUBJECT ID: "+ grades.get(position).getSubjectId().toString());
 
     }
 
@@ -47,6 +50,7 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
         this.grades = grades;
         notifyDataSetChanged();
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

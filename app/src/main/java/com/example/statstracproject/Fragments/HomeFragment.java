@@ -16,9 +16,11 @@ import com.example.statstracproject.adapters.GradesAdapter;
 import com.example.statstracproject.adapters.GradesAdapter;
 import com.example.statstracproject.api.GradesApi;
 import com.example.statstracproject.api.GradesApi;
+import com.example.statstracproject.api.SubjectsApi;
 import com.example.statstracproject.models.Grade;
 import com.example.statstracproject.models.Grade;
 import com.example.statstracproject.models.Grade;
+import com.example.statstracproject.models.Subject;
 
 import java.util.ArrayList;
 
@@ -75,6 +77,7 @@ public class HomeFragment extends Fragment {
 //        }
 //    }
     private ArrayList<Grade> gradesList = new ArrayList<>();
+    private ArrayList<Subject> subjectsList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,20 +89,21 @@ public class HomeFragment extends Fragment {
         // 2. set layoutManger
 
 
-
         GradesAdapter adapter = new GradesAdapter(rootView.getContext());
         gradesRecyclerView.setAdapter(adapter);
         gradesRecyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));
         retrofitInstance(adapter, rootView);
+        //retrofitInstance2(adapter, rootView);
         return rootView;
     }
+
     private void retrofitInstance(GradesAdapter adapter, View rootView) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8080/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        GradesApi gradesApi= retrofit.create(GradesApi.class);
+        GradesApi gradesApi = retrofit.create(GradesApi.class);
 
         Call<ArrayList<Grade>> call = gradesApi.getGrades();
         call.enqueue(new Callback<ArrayList<Grade>>() {
@@ -118,5 +122,33 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(requireContext(), "Retrofit Failiure: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+
     }
+
+//    private void retrofitInstance2(GradesAdapter adapter, View rootView) {
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("http://10.0.2.2:8080/api/v1/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        SubjectsApi subjectsApi = retrofit.create(SubjectsApi.class);
+//
+//        Call<ArrayList<Subject>> call = subjectsApi.getSubjects();
+//        call.enqueue(new Callback<ArrayList<Subject>>() {
+//            @Override
+//            public void onResponse(Call<ArrayList<Subject>> call, Response<ArrayList<Subject>> response) {
+//                if (!response.isSuccessful()) {
+//                    Toast.makeText(rootView.getContext(), "Code: " + response.code(), Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//                subjectsList = response.body();//tu wpadają rzeczy z serwera
+//                adapter.setGradesIds(subjectsList);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ArrayList<Subject>> call, Throwable t) {
+//                Toast.makeText(requireContext(), "Retrofit Failiure: " + t.getMessage(), Toast.LENGTH_LONG).show();
+//            }
+//        });
+//}
 }
