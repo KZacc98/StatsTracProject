@@ -1,6 +1,7 @@
 package com.example.statstracproject.adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.statstracproject.Fragments.GradeCardFragment;
 import com.example.statstracproject.R;
 import com.example.statstracproject.models.Subject;
 
@@ -42,7 +45,14 @@ public class SubjectsRecyclerViewAdapter extends RecyclerView.Adapter<SubjectsRe
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, subjectsList.get(holder.getAdapterPosition()).getTitle() + " Selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, subjectsList.get(holder.getAdapterPosition()).getSubjectId() + " Selected", Toast.LENGTH_SHORT).show();
+                Bundle bundle =new Bundle();
+                bundle.putLong("subjectId",subjectsList.get(holder.getAdapterPosition()).getSubjectId());
+
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                GradeCardFragment myFragment = new GradeCardFragment();
+                myFragment.setArguments(bundle);
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, myFragment).addToBackStack(null).commit();
 
             }
         });

@@ -87,12 +87,18 @@ public class GradeCardFragment extends Fragment {
         GradesAdapter adapter = new GradesAdapter(rootView.getContext());
         gradesRecyclerView.setAdapter(adapter);
         gradesRecyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));
-        retrofitInstance(adapter, rootView);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            Long subjectIdFromFragment = bundle.getLong("subjectId", 3);
+
+            retrofitInstance(adapter, rootView,subjectIdFromFragment);
+        }
+
         //retrofitInstance2(adapter, rootView);
         return rootView;
     }
 
-    private void retrofitInstance(GradesAdapter adapter, View rootView) {
+    private void retrofitInstance(GradesAdapter adapter, View rootView,Long subjectId) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8080/api/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -100,7 +106,7 @@ public class GradeCardFragment extends Fragment {
 
         GradesApi gradesApi = retrofit.create(GradesApi.class);
 
-        Call<ArrayList<Grade>> call = gradesApi.getGrades();
+        Call<ArrayList<Grade>> call = gradesApi.getGradesBySubjectId(subjectId);
         call.enqueue(new Callback<ArrayList<Grade>>() {
             @Override
             public void onResponse(Call<ArrayList<Grade>> call, Response<ArrayList<Grade>> response) {
