@@ -5,8 +5,9 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
-import com.example.statstracproject.Fragments.SubjectsFragment;
 import com.example.statstracproject.Fragments.HomeFragment;
+import com.example.statstracproject.Fragments.SubjectsFragment;
+import com.example.statstracproject.Fragments.GradeCardFragment;
 import com.example.statstracproject.Fragments.SettingsFragment;
 import com.example.statstracproject.R;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;

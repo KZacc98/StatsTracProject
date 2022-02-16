@@ -46,6 +46,9 @@ dependencies {
     //chip navbar
     implementation 'com.github.ismaeldivita:chip-navigation-bar:1.3.4'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.6.10'
+    //tableView
+    implementation 'com.evrencoskun.library:tableview:0.8.9.4'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
 
     testImplementation 'junit:junit:4.13.2'

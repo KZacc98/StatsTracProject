@@ -36,9 +36,13 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txtGrade.setText(grades.get(position).getGradeValue().toString() + " GRADE ID: "
-                + grades.get(position).getGradeId().toString() + " SUBJECT ID: "+ grades.get(position).getSubjectId().toString());
+        holder.txtGradeId.setText(grades.get(position).getGradeId().toString());
 
+        holder.txtGradeValue.setText(grades.get(position).getGradeValue().toString());
+
+        holder.txtGradeNote.setText(grades.get(position).getNote());
+
+        holder.txtSubjectId.setText(grades.get(position).getSubjectId().toString());
     }
 
     @Override
@@ -54,12 +58,19 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView txtGrade;
+        private TextView txtGradeId;
+        private TextView txtGradeValue;
+        private TextView txtGradeNote;
+        private TextView txtSubjectId;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            txtGrade = itemView.findViewById(R.id.gradeListItemTextView);
+
+            txtGradeId = itemView.findViewById(R.id.gradeListGradeId);
+            txtGradeValue = itemView.findViewById(R.id.gradeListGradeValue);
+            txtGradeNote = itemView.findViewById(R.id.gradeListGradeNote);
+            txtSubjectId = itemView.findViewById(R.id.gradeListGradeSubjectId);
         }
     }
 }

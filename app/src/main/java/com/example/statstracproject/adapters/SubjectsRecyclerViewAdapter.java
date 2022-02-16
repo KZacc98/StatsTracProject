@@ -43,6 +43,7 @@ public class SubjectsRecyclerViewAdapter extends RecyclerView.Adapter<SubjectsRe
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, subjectsList.get(holder.getAdapterPosition()).getTitle() + " Selected", Toast.LENGTH_SHORT).show();
+
             }
         });
 
