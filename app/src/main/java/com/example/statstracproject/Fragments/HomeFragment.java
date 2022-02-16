@@ -3,12 +3,30 @@ package com.example.statstracproject.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.statstracproject.R;
+import com.example.statstracproject.adapters.GradesAdapter;
+import com.example.statstracproject.adapters.GradesAdapter;
+import com.example.statstracproject.api.GradesApi;
+import com.example.statstracproject.api.GradesApi;
+import com.example.statstracproject.models.Grade;
+import com.example.statstracproject.models.Grade;
+import com.example.statstracproject.models.Grade;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {link Fragment} subclass.
@@ -17,7 +35,7 @@ import com.example.statstracproject.R;
  */
 public class HomeFragment extends Fragment {
 
-//    // TODO: Rename parameter arguments, choose names that match
+    //    // TODO: Rename parameter arguments, choose names that match
 //    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 //    private static final String ARG_PARAM1 = "param1";
 //    private static final String ARG_PARAM2 = "param2";
@@ -56,11 +74,49 @@ public class HomeFragment extends Fragment {
 //            mParam2 = getArguments().getString(ARG_PARAM2);
 //        }
 //    }
+    private ArrayList<Grade> gradesList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        // 1. get a reference to recyclerView
+        RecyclerView gradesRecyclerView = (RecyclerView) rootView.findViewById(R.id.gradesRecyclerView);
+        // 2. set layoutManger
+
+
+
+        GradesAdapter adapter = new GradesAdapter(rootView.getContext());
+        gradesRecyclerView.setAdapter(adapter);
+        gradesRecyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));
+        retrofitInstance(adapter, rootView);
+        return rootView;
+    }
+    private void retrofitInstance(GradesAdapter adapter, View rootView) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8080/api/v1/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GradesApi gradesApi= retrofit.create(GradesApi.class);
+
+        Call<ArrayList<Grade>> call = gradesApi.getGrades();
+        call.enqueue(new Callback<ArrayList<Grade>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Grade>> call, Response<ArrayList<Grade>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(rootView.getContext(), "Code: " + response.code(), Toast.LENGTH_LONG).show();
+                    return;
+                }
+                gradesList = response.body();//tu wpadają rzeczy z serwera
+                adapter.setGrades(gradesList);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Grade>> call, Throwable t) {
+                Toast.makeText(requireContext(), "Retrofit Failiure: " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
