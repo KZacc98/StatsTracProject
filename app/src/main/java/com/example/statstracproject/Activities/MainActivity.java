@@ -4,15 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
 
 import com.example.statstracproject.Fragments.HomeFragment;
 import com.example.statstracproject.Fragments.SubjectsFragment;
-import com.example.statstracproject.Fragments.GradeCardFragment;
-import com.example.statstracproject.Fragments.SettingsFragment;
+import com.example.statstracproject.Fragments.AddFragment;
 import com.example.statstracproject.R;
-import com.example.statstracproject.models.Grade;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         chipNavigationBar = findViewById(R.id.bottomNavBar);
-        chipNavigationBar.setItemSelected(R.id.bottomNavBar_home,true);
+        chipNavigationBar.setItemSelected(R.id.bottomNavBar_home, true);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new HomeFragment()).commit();
 
         bottomMenu();
@@ -37,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    private void retrofitInstance(ContactsRecyclerViewAdapter adapter) {
+    //    private void retrofitInstance(ContactsRecyclerViewAdapter adapter) {
 //        Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl("http://10.0.2.2:8080/api/v1/")
 //                .addConverterFactory(GsonConverterFactory.create())
@@ -78,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new SubjectsFragment();
                         break;
                     case R.id.bottomNavBar_settings:
-                        fragment = new SettingsFragment();
+                        fragment = new AddFragment();
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
