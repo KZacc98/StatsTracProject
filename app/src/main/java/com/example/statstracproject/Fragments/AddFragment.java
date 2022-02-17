@@ -2,6 +2,7 @@ package com.example.statstracproject.Fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -23,16 +24,24 @@ public class AddFragment extends Fragment {
         CardView cardviewAddGrade = rootView.findViewById(R.id.addGradeCardView);
         CardView cardviewAddSubject = rootView.findViewById(R.id.addSubjectCardView);
 
+
         cardviewAddGrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(rootView.getContext(), "AddGrade Clicked", Toast.LENGTH_LONG).show();
+
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                AddGradeFragment myFragment = new AddGradeFragment();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, myFragment).addToBackStack(null).commit();
             }
         });
 
         cardviewAddSubject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 Toast.makeText(rootView.getContext(), "AddSubject Clicked", Toast.LENGTH_LONG).show();
             }
         });
@@ -44,5 +53,7 @@ public class AddFragment extends Fragment {
 
 
         return rootView;
+
     }
+
 }

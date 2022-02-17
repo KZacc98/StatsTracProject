@@ -6,6 +6,7 @@
         <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/drawable/round_corners.xml" value="0.161" />
         <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/layout/activity_main.xml" value="0.29030797101449274" />
         <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/layout/contact_list_item.xml" value="0.29030797101449274" />
+        <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/layout/fragment_add_subject.xml" value="0.42844202898550726" />
         <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/layout/fragment_contacts.xml" value="0.3967391304347826" />
         <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/layout/fragment_grade_card.xml" value="0.42844202898550726" />
         <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/layout/fragment_home.xml" value="0.26856884057971014" />
@@ -13,7 +14,9 @@
         <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/layout/fragment_settings.xml" value="0.3967391304347826" />
         <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/layout/fragment_subjects.xml" value="0.42844202898550726" />
         <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/layout/grade_list_item.xml" value="0.42844202898550726" />
+        <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/layout/layout_dialog.xml" value="0.42844202898550726" />
         <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/layout/subject_list_item.xml" value="0.30434782608695654" />
+        <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/layout/subject_list_item_small.xml" value="0.42844202898550726" />
         <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/menu/bottom_nav_menu.xml" value="0.42916666666666664" />
         <entry key="..\:/Users/Kamil/AndroidStudioProjects/StatsTracProject/app/src/main/res/menu/bottom_nav_menu_subjects.xml" value="0.42916666666666664" />
       </map>
