@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.statstracproject.Fragments.GradeCardFragment;
 import com.example.statstracproject.R;
 import com.example.statstracproject.models.Subject;
@@ -32,7 +33,7 @@ public class SubjectsRecyclerViewAdapter extends RecyclerView.Adapter<SubjectsRe
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.contact_list_item, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.subject_list_item, parent,false);
         ViewHolder holder=new ViewHolder(view);
         return holder;
     }
@@ -41,7 +42,6 @@ public class SubjectsRecyclerViewAdapter extends RecyclerView.Adapter<SubjectsRe
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.txtName.setText(subjectsList.get(position).getTitle());
-        holder.txtEmail.setText(subjectsList.get(position).getTitle());
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,11 +57,10 @@ public class SubjectsRecyclerViewAdapter extends RecyclerView.Adapter<SubjectsRe
             }
         });
 
-//        Glide.with(context)
-//                .asBitmap()
-//                .load(subjectsList.get(position)
-//                        .getImageUrl())
-//                .into(holder.image);
+        Glide.with(context)
+                .asBitmap()
+                .load("https://img.freepik.com/darmowe-wektory/trener-przemawia-przed-publicznoscia-mentor-prezentujacy-wykresy-i-raporty-spotkanie-pracownikow-na-szkoleniu-biznesowym-seminarium-lub-konferencji-ilustracja-wektorowa-do-prezentacji-wykladu-edukacji_74855-8294.jpg?w=1480")
+                .into(holder.image);
     }
 
     @Override
@@ -76,7 +75,7 @@ public class SubjectsRecyclerViewAdapter extends RecyclerView.Adapter<SubjectsRe
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView txtName, txtEmail;
+        private TextView txtName;
         private ImageView image;
         private CardView parent;
 
@@ -84,7 +83,6 @@ public class SubjectsRecyclerViewAdapter extends RecyclerView.Adapter<SubjectsRe
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName=itemView.findViewById(R.id.txtName);
-            txtEmail=itemView.findViewById(R.id.txtEmail);
             image=itemView.findViewById(R.id.image);
             parent=itemView.findViewById(R.id.parent);
         }

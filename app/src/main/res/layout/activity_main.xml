@@ -19,4 +19,6 @@
         app:cnb_radius="8dp"
         app:cnb_unselectedColor="#565554"
         android:background="@drawable/round_corners"/>
+
+
 </RelativeLayout>

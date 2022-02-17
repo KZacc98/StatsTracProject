@@ -87,7 +87,7 @@ public class SubjectsFragment extends Fragment {
 
         SubjectsRecyclerViewAdapter adapter = new SubjectsRecyclerViewAdapter(rootView.getContext());
         contactsRecyclerView.setAdapter(adapter);
-        contactsRecyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        contactsRecyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.VERTICAL, false));
         retrofitInstance(adapter, rootView);
 
 
