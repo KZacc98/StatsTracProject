@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.StatsTracProject">
+
         <activity
             android:name=".Activities.MainActivity"
             android:exported="true">

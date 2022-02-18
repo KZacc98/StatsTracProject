@@ -71,9 +71,7 @@ public class AddGradeFragment extends Fragment {
 //        }
 //    }
     private ArrayList<Subject> subjectsList = new ArrayList<>();
-    RadioGroup radioGroup;
-    private EditText note;
-    private Double gradeValue;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,59 +85,15 @@ public class AddGradeFragment extends Fragment {
 
         SubjectsRecyclerViewAdapterSmall adapter = new SubjectsRecyclerViewAdapterSmall(rootView.getContext());
         contactsRecyclerView.setAdapter(adapter);
-        contactsRecyclerView.setLayoutManager(new GridLayoutManager(rootView.getContext(), 2, GridLayoutManager.HORIZONTAL, false));
+        contactsRecyclerView.setLayoutManager(new GridLayoutManager(rootView.getContext(), 2));
         retrofitInstance(adapter, rootView);
 
-        radioGroup = (RadioGroup) rootView.findViewById(R.id.radioGroup);
-        Button buttonConfrim = rootView.findViewById(R.id.buttonConfirm);
-
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-
-                switch (checkedId) {
-                    case R.id.radioButton2:
-                        gradeValue = 2.0;
-
-                        break;
-                    case R.id.radioButton25:
-                        gradeValue = 2.5;
-
-                        break;
-                    case R.id.radioButton3:
-                        gradeValue = 3.0;
-
-                        break;
-                    case R.id.radioButton35:
-                        gradeValue = 3.5;
-
-                        break;
-                    case R.id.radioButton4:
-                        gradeValue = 4.0;
-
-                        break;
-                    case R.id.radioButton45:
-                        gradeValue = 4.5;
-
-                        break;
-                    case R.id.radioButton5:
-                        gradeValue = 5.0;
-
-                        break;
-                }
-                Toast.makeText(rootView.getContext(), "Selected grade: " + gradeValue, Toast.LENGTH_LONG).show();
-
-            }
-        });
 
 
-        buttonConfrim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
 
-            }
-        });
+
+
 
 
         return rootView;
