@@ -10,6 +10,10 @@ public class Subject {
                 '}';
     }
 
+    public Subject(String title) {
+        this.title = title;
+    }
+
     public Subject() {
     }
 

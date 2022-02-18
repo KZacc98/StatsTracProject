@@ -9,9 +9,17 @@ import com.example.statstracproject.Fragments.HomeFragment;
 import com.example.statstracproject.Fragments.SubjectsFragment;
 import com.example.statstracproject.Fragments.AddFragment;
 import com.example.statstracproject.R;
+import com.example.statstracproject.api.SubjectsApi;
+import com.example.statstracproject.models.Subject;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
-public class MainActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class MainActivity extends AppCompatActivity implements AddSubjectDialog.AddSubjectDialogListener {
 
     ChipNavigationBar chipNavigationBar;
 
@@ -81,5 +89,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void addNewSubject(String subjectTitle) {
+        Subject subject=new Subject(subjectTitle);
+        retrofitInstance(subject);
+    }
+
+
+
+    private void retrofitInstance(Subject subject) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8080/api/v1/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SubjectsApi subjectsApi = retrofit.create(SubjectsApi.class);
+
+        Call<Subject> call = subjectsApi.addNewSubject(subject);
+        call.enqueue(new Callback<Subject>() {
+
+            @Override
+            public void onResponse(Call<Subject> call, Response<Subject> response) {
+                System.out.println("#################### RESPONSE OKAY");
+            }
+
+            @Override
+            public void onFailure(Call<Subject> call, Throwable t) {
+                System.out.println("#################### RESPONSE NOT OKAY$$$$$$$$$$$$$$$$$$$$$$$$");
+            }
+        });
     }
 }
